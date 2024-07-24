@@ -5,10 +5,10 @@
 ### Passo a passo
 Clone Repositório
 ```sh
-git clone -b laravel-10-com-php-8.1 https://github.com/especializati/setup-docker-laravel.git app-laravel
+git clone https://github.com/edimilsonqueiroz/laravel-api-acl.git
 ```
 ```sh
-cd app-laravel
+cd laravel-acl
 ```
 
 
@@ -20,8 +20,8 @@ cp .env.example .env
 
 Atualize as variáveis de ambiente do arquivo .env
 ```dosini
-APP_NAME="Especializa Ti"
-APP_URL=http://localhost:8989
+APP_NAME="Projeto Api ACL"
+APP_URL=http://localhost:8000
 
 DB_CONNECTION=mysql
 DB_HOST=db
@@ -65,4 +65,4 @@ php artisan key:generate
 
 
 Acesse o projeto
-[http://localhost:8989](http://localhost:8989)
+[http://localhost:8000](http://localhost:8000)
