@@ -2,6 +2,8 @@
 
 namespace App\Repositories;
 
+use App\DTO\Users\CreateUserDTO;
+use App\DTO\Users\EditUserDTO;
 use App\Models\User;
 use Illuminate\Pagination\LengthAwarePaginator;
 
@@ -21,12 +23,26 @@ class UserRepository
         })->paginate($totalPerPage, ['*'], 'page',$page);
     }
 
-    public function createNew(string $name, string $email, string $password): User
+    public function createNew(CreateUserDTO $user): User
     {
-        return $this->user->create([
-            'name'=> $name,
-            'email' => $email,
-            'password' => bcrypt($password)
-        ]);
+        $data = (array) $user;
+        $data['password'] = bcrypt($data['password']);
+        return $this->user->create($data);
+    }
+
+    public function findById(string $id): ?User
+    {
+        return $this->user->find($id);
+    }
+
+    public function update(EditUserDTO $dto): bool
+    {
+        if(!$user = $this->findById($dto->id)){
+            return false;
+        }
+
+        $data = (array) $user;
+        $data['password'] = bcrypt($data['password']);
+        return $user->update($data);
     }
 }
