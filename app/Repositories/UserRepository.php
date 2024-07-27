@@ -37,12 +37,14 @@ class UserRepository
 
     public function update(EditUserDTO $dto): bool
     {
-        if(!$user = $this->findById($dto->id)){
+        if (!$user = $this->findById($dto->id)) {
             return false;
         }
-
-        $data = (array) $user;
-        $data['password'] = bcrypt($data['password']);
+        $data = (array) $dto;
+        unset($data['password']);
+        if ($dto->password !== null) {
+            $data['password'] = bcrypt($dto->password);
+        }
         return $user->update($data);
     }
 }
