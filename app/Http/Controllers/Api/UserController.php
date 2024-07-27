@@ -10,6 +10,8 @@ use App\Http\Requests\Api\UpdateUserRequest;
 use App\Http\Resources\UserResource;
 use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response as HttpResponse;
+use Illuminate\Support\Facades\Response;
 
 class UserController extends Controller
 {
@@ -70,6 +72,10 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $response = $this->userRepository->delete($id);
+        if (!$response) {
+            return response()->json(['message' => 'Usuário não encontrado.'], 404);
+        }
+        return response()->json([], 204);
     }
 }
