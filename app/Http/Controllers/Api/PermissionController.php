@@ -10,8 +10,7 @@ use App\Http\Requests\Api\UpdatePermissionRequest;
 use App\Http\Resources\PermissionResource;
 use App\Repositories\PermissionRepository;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response as HttpResponse;
-use Illuminate\Support\Facades\Response;
+
 
 class PermissionController extends Controller
 {
